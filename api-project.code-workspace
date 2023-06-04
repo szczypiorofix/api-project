@@ -1,0 +1,40 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"editor.fontFamily": "Noto Mono, monospace",
+		"editor.lineHeight": 16,
+		"editor.fontLigatures": true,
+		"editor.mouseWheelZoom": true,
+		"editor.cursorWidth": 8,
+		"editor.tabSize": 4,
+		"editor.cursorBlinking": "phase",
+		"files.autoGuessEncoding": false,
+		"files.encoding": "utf8",
+		"files.exclude": {
+			"**/.git": true,
+			"**/.svn": true,
+			"**/.hg": true,
+			"**/CVS": true,
+			"**/.DS_Store": true,
+			"**/node_modules": true
+		}
+	},
+	"extensions": {
+		"recommendations": [
+			"github.vscode-github-actions",
+			"formulahendry.auto-rename-tag",
+			"aaron-bond.better-comments",
+			"adpyke.codesnap",
+			"dsznajder.es7-react-js-snippets",
+			"donjayamanne.githistory",
+			"dbaeumer.vscode-eslint",
+			"esbenp.prettier-vscode",
+			"pkief.material-icon-theme",
+			"humao.rest-client"
+		]
+	}
+}

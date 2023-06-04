@@ -1,0 +1,14 @@
+# DEFAULT MAIN PAGE REQUEST
+GET http://localhost:3000/
+
+###
+
+
+GET http://localhost:3000/user
+
+###
+
+
+GET http://localhost:3000/user/new
+
+###
