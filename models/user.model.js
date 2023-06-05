@@ -17,4 +17,4 @@ let schema = new mongoose.Schema({
 
 schema.path('_id');
 
-module.exports = mongoose.model("User", schema);
+module.exports = mongoose.model( "User", schema );

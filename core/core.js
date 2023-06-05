@@ -18,6 +18,7 @@ const coreApp = {
         this.app = expressApp;
         this.app.use( logger );
         this.app.use( express.json() );
+
         this.app.set('view engine', 'ejs');
         this.app.get('/', (req, res) => {
             res.render('index');

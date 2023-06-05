@@ -1,13 +1,17 @@
 const express = require('express');
-const jsonContentType = require('../middlewares/json');
-const { getUser } = require('../controllers/user.controller');
-
+const bodyParser = require('body-parser');
 
 const router = express.Router();
 
+const jsonContentType = require('../middlewares/json');
+const { getAllUses, getUser, postUser } = require('../controllers/user.controller');
+
+
 router.use( jsonContentType );
 
-router.get('/', getUser);
+router.get( '/', getAllUses );
+router.get( '/:id', getUser );
+router.post( '/', bodyParser.urlencoded( {extended: true } ), postUser );
 
 
 router.get('/new', (req, res) => {
