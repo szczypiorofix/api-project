@@ -4,15 +4,6 @@ GET http://localhost:3000/
 ###
 
 
-GET http://localhost:3000/user
-
-###
-
-
-GET http://localhost:3000/user?s=1
-
-###
-
 
 GET http://localhost:3000/user/2/
 
@@ -30,10 +21,6 @@ GET http://localhost:3000/user
 POST http://localhost:3000/user
 Content-Type: application/x-www-form-urlencoded
 
-name=Fred&age=32
+name=Martin&age=36
 ###
 
-
-GET http://localhost:3000/user/new
-
-###
