@@ -6,6 +6,7 @@
     "start": "nodemon -x ts-node ./src/server.ts",
     "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
     "dev": "ts-node-dev ./src/server.ts --respawn --transpileOnly ",
+    "prod": "node ./build/server.js",
     "build": "tsc",
     "test": "jest"
   },
