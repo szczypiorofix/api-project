@@ -1,4 +1,3 @@
-
 export interface IEnvironmentType {
     port: number;
     name: string;
@@ -7,7 +6,6 @@ export interface IEnvironmentType {
 export interface IEnvironments {
     [key: string]: IEnvironmentType;
 }
-
 
 const curEnv = typeof (process.env.NODE_ENV) === 'string' ? process.env.NODE_ENV : 'development';
 
