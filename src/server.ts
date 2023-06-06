@@ -3,8 +3,14 @@ import CoreApp from "./core/core";
 
 dotenv.config();
 
+import currentEnvironment from './configs/config';
+
+
 const PORT = process.env.SERVER_PORT ?? 3000;
 const mongoDbAddress = process.env.MONGODB_ADDRESS ?? "";
+
+
+console.log(currentEnvironment);
 
 const coreApp = CoreApp();
 
