@@ -18,9 +18,22 @@ const CoreApp = (): ICoreApp => {
             this.app.use(express.json());
 
             this.app.set("view engine", "ejs");
+
+            
             this.app.get("/", (req: Request, res: Response) => {
                 res.render("../src/views/index");
             });
+            this.app.get("/about", (req: Request, res: Response) => {
+                res.render("../src/views/about");
+            });
+            this.app.get("/routes", (req: Request, res: Response) => {
+                res.render("../src/views/routes");
+            });
+            this.app.get("/examples", (req: Request, res: Response) => {
+                res.render("../src/views/examples");
+            });
+
+
             this.app.use("/user", userRouter);
         },
         async mongoDbConnect(url: string) {

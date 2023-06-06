@@ -27,5 +27,3 @@ coreApp.app.listen(PORT, () => {
         });
 })();
 
-
-// blabla
