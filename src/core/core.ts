@@ -34,8 +34,8 @@ const CoreApp = (): ICoreApp => {
 
             this.app.use("/user", userRouter);
 
-            this.app.get('*', (req, res) => {
-                res.status(404).send();
+            this.app.get('*', (req: Request, res: Response) => {
+                res.status(404).render('../src/views/404');
             });
         },
         async mongoDbConnect(url: string) {
