@@ -1,4 +1,4 @@
-import express, { Express, Request, Response } from "express";
+import express, {Express, Request, Response} from "express";
 import mongoose from "mongoose";
 import userRouter from "../routes/user";
 import logger from "../middlewares/logger";
@@ -10,7 +10,7 @@ export interface ICoreApp {
 }
 
 const CoreApp = (): ICoreApp => {
-    const app: ICoreApp = {
+    return {
         app: express(),
         init() {
             this.app = express();
@@ -19,7 +19,6 @@ const CoreApp = (): ICoreApp => {
 
             this.app.set("view engine", "ejs");
 
-            
             this.app.get("/", (req: Request, res: Response) => {
                 res.render("../src/views/index");
             });
@@ -33,8 +32,11 @@ const CoreApp = (): ICoreApp => {
                 res.render("../src/views/examples");
             });
 
-
             this.app.use("/user", userRouter);
+
+            this.app.get('*', (req, res) => {
+                res.status(404).send();
+            });
         },
         async mongoDbConnect(url: string) {
             let md;
@@ -46,7 +48,6 @@ const CoreApp = (): ICoreApp => {
             return md;
         },
     };
-    return app;
 };
 
 export default CoreApp;

@@ -22,8 +22,7 @@ coreApp.app.listen(PORT, () => {
         .then(() => {
             console.log("MongoDB connection established.");
         })
-        .catch((err) => {
+        .catch((err: Error) => {
             console.error("Mongoose error: ", err);
         });
 })();
-

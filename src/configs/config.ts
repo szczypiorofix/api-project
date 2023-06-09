@@ -7,7 +7,7 @@ export interface IEnvironments {
     [key: string]: IEnvironmentType;
 }
 
-const curEnv = typeof (process.env.NODE_ENV) === 'string' ? process.env.NODE_ENV : 'development';
+const curEnv = process.env.NODE_ENV ?? 'development';
 
 const environments: IEnvironments = {
     "dev": {
