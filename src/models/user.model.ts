@@ -1,6 +1,12 @@
 import mongoose from "mongoose";
 
-const schema = new mongoose.Schema({
+interface UserModel {
+    _id: number;
+    name: string;
+    age: number;
+}
+
+const schema: mongoose.Schema<UserModel> = new mongoose.Schema({
     _id: {
         type: Number,
         required: true,
