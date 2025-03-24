@@ -1,0 +1,65 @@
+version: 2.1
+
+orbs:
+  node: circleci/node@5.2
+
+jobs:
+  build:
+    executor: node/default
+    steps:
+      - checkout
+      - run: npm install
+      - run: npm run test
+      - run: npm run build
+      - save_cache:
+          key: dependency-cache-server-{{ checksum "./package.json" }}
+          paths:
+            - ./node_modules
+            - ./dist
+
+  deploy:
+    executor: node/default
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache-server-{{ checksum "./package.json" }}
+      - run: cp package.json dist/
+      - run: node deploy.js
+
+  domain_restart:
+    executor: node/default
+    steps:
+      - checkout
+      - add_ssh_keys:
+          fingerprints:
+            - "SHA256:UncXNIQ93P+26JrN0yQwF0epZdo7kVAdNvPD+ZAn56Q"
+      - run: ssh-keyscan -H 's21.mydevil.net' >> ~/.ssh/known_hosts
+      - run: ssh $SSH_USER@$SSH_HOST "cd domains/api.wroblewskipiotr.pl/public_nodejs/ && npm install"
+      - run: ssh $SSH_USER@$SSH_HOST "cd domains/api.wroblewskipiotr.pl/public_nodejs/ && devil www restart api.wroblewskipiotr.pl"
+
+workflows:
+  tm-workflow:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only:
+              - master
+
+      - deploy:
+          requires:
+            - build:
+              - success
+          filters:
+            branches:
+              only:
+              - master
+
+      - domain_restart:
+          requires:
+            - deploy:
+              - success
+          filters:
+            branches:
+              only:
+              - master
