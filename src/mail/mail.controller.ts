@@ -13,6 +13,7 @@ export class MailController {
 
     @Post('send')
     public sendMail(@Body() sendMailParameters: SendMailParameters) {
+        console.log('Body parameters:' + JSON.stringify(sendMailParameters));
         const { name, email, message } = sendMailParameters;
         return this.mailService.sendMail(name, email, message);
     }
