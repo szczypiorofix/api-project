@@ -31,8 +31,8 @@ export class MailService {
             from: verifiedFromEmail,
             subject: `Wiadomośc wysłana z formularza strony od ${name} (${email})`,
             replyTo: email,
-            text: `Użytkownik ${name} przesyła wiadomość ${message}`,
-            html: `<p>Użytkownik <i>${name}</i> przesyła wiadomość:<p/> <div>${message}</div>`,
+            text: `Użytkownik ${name} (${email}) przesyła wiadomość ${message}`,
+            html: `<p>Użytkownik <i>${name}</i> (${email}) przesyła wiadomość:<p/> <div>${message}</div>`,
         };
 
         try {
