@@ -1,3 +1,3 @@
 export interface AppConfiguration {
-    port: number
+    port: number;
 }

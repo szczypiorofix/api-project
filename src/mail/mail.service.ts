@@ -1,14 +1,49 @@
-import { Injectable } from '@nestjs/common';
-import { ApiBaseConfig } from "../shared/models";
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { ApiBaseConfig } from '../shared/models';
+import { setApiKey, send } from '@sendgrid/mail';
 
 @Injectable()
 export class MailService {
-    public home() {
+    public home(): string {
         const testData: ApiBaseConfig = {
             name: 'API Mail Service',
             path: '/api/mail',
             version: '0.0.1',
         };
         return JSON.stringify(testData);
+    }
+
+    public async sendMail(name: string, email: string, message: string) {
+        const apiKey: string | undefined = process.env.SENDGRID_API_KEY;
+        const verifiedFromEmail: string | undefined =
+            process.env.VERIFIED_FROM_EMAIL;
+        if (!apiKey || !verifiedFromEmail) {
+            throw new HttpException(
+                'No expected env vars found',
+                HttpStatus.NOT_FOUND,
+            );
+        }
+
+        setApiKey(apiKey);
+
+        const msg = {
+            to: verifiedFromEmail,
+            from: email,
+            subject: 'Wiadomośc wysłana z formularza strony od ' + name,
+            text: message,
+            html: message,
+        };
+
+        try {
+            await send(msg);
+            console.log('Email sent');
+        } catch (error: any) {
+            throw new HttpException(
+                'Email was not sent because of error: ' + JSON.stringify(error),
+                HttpStatus.NOT_FOUND,
+            );
+        }
+
+        return JSON.stringify({ message: 'ok' });
     }
 }
