@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { ApiBaseConfig } from "../shared/models";
+import { ApiBaseConfig } from '../shared/models';
 
 @Injectable()
 export class MailService {
