@@ -1,6 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { ApiBaseConfig } from '../shared/models';
-import { setApiKey, send } from '@sendgrid/mail';
+import * as Sendgrid from '@sendgrid/mail';
 
 @Injectable()
 export class MailService {
@@ -24,7 +24,7 @@ export class MailService {
             );
         }
 
-        setApiKey(apiKey);
+        Sendgrid.setApiKey(apiKey);
 
         const msg = {
             to: verifiedFromEmail,
@@ -35,7 +35,7 @@ export class MailService {
         };
 
         try {
-            await send(msg);
+            await Sendgrid.send(msg);
             console.log('Email sent');
         } catch (error: any) {
             throw new HttpException(
