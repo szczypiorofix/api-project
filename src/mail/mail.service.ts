@@ -28,10 +28,11 @@ export class MailService {
 
         const msg = {
             to: verifiedFromEmail,
-            from: email,
-            subject: 'Wiadomośc wysłana z formularza strony od ' + name,
-            text: message,
-            html: message,
+            from: verifiedFromEmail,
+            subject: `Wiadomośc wysłana z formularza strony od ${name} (${email})`,
+            replyTo: email,
+            text: `Użytkownik ${name} przesyła wiadomość ${message}`,
+            html: `<p>Użytkownik <i>${name}</i> przesyła wiadomość:<p/> <div>${message}</div>`,
         };
 
         try {
