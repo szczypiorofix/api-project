@@ -1,4 +1,4 @@
-import { AppConfiguration } from '../models/AppConfiguration.model';
+import { AppConfiguration } from '../models';
 
 export const config: AppConfiguration = {
     port: 3000,
