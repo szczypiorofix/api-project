@@ -16,7 +16,6 @@ jobs:
     executor: node/default
     steps:
       - checkout
-      - run: cp package.json dist/
       - run: node deploy.js
 
   domain_restart:
