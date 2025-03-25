@@ -11,11 +11,19 @@ jobs:
       - run: npm install
       - run: npm run test
       - run: npm run build
+      - save_cache:
+          key: dependency-cache-server-{{ checksum "./package.json" }}
+          paths:
+            - ./node_modules
 
   deploy:
     executor: node/default
     steps:
       - checkout
+      - restore_cache:
+          key: dependency-cache-server-{{ checksum "./package.json" }}
+      - run: npm run build
+      - run: cp package.json dist/
       - run: node deploy.js
 
   domain_restart:
