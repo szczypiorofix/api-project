@@ -1,13 +1,14 @@
-import { ServiceDetails } from '../models';
+import { ServiceDetails } from '../../@types';
+import { API_VERSION } from './Config.data';
 
 export const apiServiceDetails: ServiceDetails = {
     name: 'API Service',
-    path: '/api',
-    version: '0.0.1',
+    path: `/${API_VERSION}`,
+    version: '0.1.1',
 };
 
 export const mailServiceDetails: ServiceDetails = {
     name: 'API Mail Service',
-    path: '/api/mail',
-    version: '0.1.1',
+    path: `/${API_VERSION}/mail`,
+    version: '0.1.2',
 };
