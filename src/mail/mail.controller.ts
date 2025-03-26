@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { MailService } from './mail.service';
-import { SendMailParameters } from '../shared/models';
+import { EmailMessage } from '../shared/models';
 
 @Controller('mail')
 export class MailController {
@@ -12,7 +12,7 @@ export class MailController {
     }
 
     @Post('send')
-    public sendMail(@Body() sendMailParameters: SendMailParameters) {
+    public sendMail(@Body() sendMailParameters: EmailMessage) {
         const { name, email, message } = sendMailParameters;
         return this.mailService.sendMail(name, email, message);
     }

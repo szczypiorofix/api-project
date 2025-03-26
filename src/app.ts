@@ -1,10 +1,12 @@
 import { NestFactory } from '@nestjs/core';
 import { ApiModule } from './api/api.module';
-import { config } from './shared/constants/Config.data';
+import { API_VERSION, config } from './shared/constants';
+import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
     const app = await NestFactory.create(ApiModule);
-    app.setGlobalPrefix('api');
+    app.setGlobalPrefix(API_VERSION);
+    app.useGlobalPipes(new ValidationPipe());
     app.enableCors();
     await app.listen(process.env.PORT ?? config.port);
 }

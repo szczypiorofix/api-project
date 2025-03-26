@@ -1,16 +1,11 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { ApiBaseConfig } from '../shared/models';
 import * as Sendgrid from '@sendgrid/mail';
+import { mailServiceDetails } from '../shared/constants';
 
 @Injectable()
 export class MailService {
     public home(): string {
-        const testData: ApiBaseConfig = {
-            name: 'API Mail Service',
-            path: '/api/mail',
-            version: '0.0.1',
-        };
-        return JSON.stringify(testData);
+        return JSON.stringify(mailServiceDetails);
     }
 
     public async sendMail(name: string, email: string, message: string) {
