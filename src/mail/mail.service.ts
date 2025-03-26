@@ -1,6 +1,7 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import * as Sendgrid from '@sendgrid/mail';
 import { mailServiceDetails } from '../shared/constants';
+import { EmailMessageResponse } from '../@types';
 
 @Injectable()
 export class MailService {
@@ -40,6 +41,12 @@ export class MailService {
             );
         }
 
-        return JSON.stringify({ message: 'ok' });
+        const emailSentResponse: EmailMessageResponse = {
+            message: ['Email sent'],
+            error: '',
+            statusCode: HttpStatus.OK,
+        };
+
+        return JSON.stringify(emailSentResponse);
     }
 }
